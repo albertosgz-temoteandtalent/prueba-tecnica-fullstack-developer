@@ -14,7 +14,6 @@ onMounted(() => {
     const url = new URL(window.location);
     const params = url.searchParams;
 
-    console.log(params)
     if (params.has('nombre')) {
         nombre.value = params.get('nombre');
     }
