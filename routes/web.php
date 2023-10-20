@@ -35,4 +35,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/dynamic-page', function () {
+    return Inertia::render('DynamicPage/Profile', [
+    ]);
+})->name('dynamic-page-user-profile');
+
 require __DIR__.'/auth.php';
