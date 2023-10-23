@@ -40,4 +40,11 @@ Route::get('/dynamic-page', function () {
     ]);
 })->name('dynamic-page-user-profile');
 
+Route::get('/url-generator', function () {
+    return Inertia::render('DynamicPage/UrlGenerator', [
+    ]);
+})->name('dynamic-page-url-generator');
+
+Route::post('/url-generator/imagen', [\App\Http\Controllers\DynamicPage::class, 'crearImagen'])->name('dynamic-page.crear-imagen');
+
 require __DIR__.'/auth.php';

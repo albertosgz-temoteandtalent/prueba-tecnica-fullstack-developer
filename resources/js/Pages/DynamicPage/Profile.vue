@@ -14,19 +14,19 @@ onMounted(() => {
     const url = new URL(window.location);
     const params = url.searchParams;
 
-    if (params.has('nombre')) {
+    if (!!params.get('nombre')) {
         nombre.value = params.get('nombre');
     }
-    if (params.has('apellidos')) {
+    if (!!params.get('apellidos')) {
         apellidos.value = params.get('apellidos');
     }
-    if (params.has('telefono')) {
+    if (!!params.get('telefono')) {
         telefono.value = params.get('telefono');
     }
-    if (params.has('correo')) {
+    if (!!params.get('correo')) {
         correo.value = params.get('correo');
     }
-    if (params.has('imagen')) {
+    if (!!params.get('imagen')) {
         imagen.value = params.get('imagen');
     }
 })
