@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\imagen;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -37,9 +38,7 @@ class DynamicPage extends Controller
             $imagen->mime = $mime;
             $imagen->save();
 
-            return new JsonResponse([
-                'path' => $path,
-            ]);
+            return Storage::url($path);;
         }
         throw new BadRequestException('Imagen no encontrada', 400);
     }

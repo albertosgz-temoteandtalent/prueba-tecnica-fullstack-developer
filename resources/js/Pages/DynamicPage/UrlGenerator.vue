@@ -15,7 +15,6 @@ const telefono = ref('');
 const correo = ref('');
 const imagenUrl = ref('');
 
-const imagen = ref('');
 const progresoImagen = ref(0);
 
 const activaCreadorUrl = computed(() => !!nombre.value ||
@@ -34,10 +33,6 @@ const urlGenerada = computed(() => '/dynamic-page?' + qs.stringify({
         //skipEmptyString: true,
         skipNulls: true
     }))
-
-function submit() {
-    console.log(form);
-}
 </script>
 
 <template>
@@ -50,7 +45,7 @@ function submit() {
             </p>
         </header>
 
-        <form @submit.prevent="submit" class="mt-6 space-y-6">
+        <form @submit.prevent class="mt-6 space-y-6">
             <div>
                 <InputLabel for="nombre" value="Nombre" />
 
@@ -123,7 +118,6 @@ function submit() {
 
                 <PrimaryButton v-show="activaCreadorUrl">
                     <a :href="urlGenerada" target="_blank">Abrir URL en nueva pestaña</a>
-
                 </PrimaryButton>
             </div>
         </form>

@@ -21,37 +21,25 @@ const { endpoint } = toRefs(props);
 
 const uploadFile = async (event: any) => {
     file.value = event.target.files[0];
-    //const reader = new FileReader();
     if (file.value) {
-        //reader.readAsDataURL(file.value);
-        //reader.onload = async () => {
-            //const encodedFile = reader.result; //reader.result?.split(",")[1];
-            /*
-            const data = {
-                file: encodedFile,
-                fileName: fileName.value,
-                fileExtension: fileExtension.value,
-                fileMimeType: fileMimeType.value,
-            };
-
-             */
-            let data = new FormData();
-            data.append('imagen', file.value, fileName.value);
-            data.append('extension', fileExtension.value || '');
-            data.append('mimeType', fileMimeType.value || '');
-            const config = {
-                onUploadProgress: function(progressEvent: any) {
-                    let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
-                    console.log(percentCompleted)
-                }
+        let data = new FormData();
+        data.append('imagen', file.value, fileName.value);
+        data.append('extension', fileExtension.value || '');
+        data.append('mimeType', fileMimeType.value || '');
+        const config = {
+            onUploadProgress: function(progressEvent: any) {
+                let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
+                console.log('progress', percentCompleted)
+                emit('progress', percentCompleted)
             }
-            try {
-                const response = await axios.post(endpoint.value, data, config);
-                console.log(response.data);
-            } catch (error) {
-                console.error(error);
-            }
-       // };
+        }
+        try {
+            const response = await axios.post<string>(endpoint.value, data, config);
+            console.log('RESPONSE', response, response.data);
+            emit('path', response.data);
+        } catch (error) {
+            console.error(error);
+        }
     } else {
         console.error('Error reading file')
     }
