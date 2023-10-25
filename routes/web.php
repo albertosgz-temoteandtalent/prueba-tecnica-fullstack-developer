@@ -45,6 +45,4 @@ Route::get('/url-generator', function () {
     ]);
 })->name('dynamic-page-url-generator');
 
-Route::post('/url-generator/imagen', [\App\Http\Controllers\DynamicPage::class, 'crearImagen'])->name('dynamic-page.crear-imagen');
-
 require __DIR__.'/auth.php';

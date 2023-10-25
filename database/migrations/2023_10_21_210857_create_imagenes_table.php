@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('mime')->nullable();
             $table->string('extension')->nullable();
             $table->string('nombre');
-            $table->foreignId('user_id')->nullable();
         });
     }
 

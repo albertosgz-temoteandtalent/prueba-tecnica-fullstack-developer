@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed, onMounted, ref, toRefs} from "vue";
+import {computed, ref, toRefs} from "vue";
 import axios from "axios";
 
 const props = defineProps<{
@@ -29,13 +29,11 @@ const uploadFile = async (event: any) => {
         const config = {
             onUploadProgress: function(progressEvent: any) {
                 let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
-                console.log('progress', percentCompleted)
                 emit('progress', percentCompleted)
             }
         }
         try {
             const response = await axios.post<string>(endpoint.value, data, config);
-            console.log('RESPONSE', response, response.data);
             emit('path', response.data);
         } catch (error) {
             console.error(error);

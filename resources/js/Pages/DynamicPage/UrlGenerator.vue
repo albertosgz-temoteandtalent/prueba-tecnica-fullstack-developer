@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
@@ -43,6 +42,8 @@ const urlGenerada = computed(() => '/dynamic-page?' + qs.stringify({
             <p class="mt-1 text-sm text-gray-600">
                 Genera URL rellenando los siguientes campos
             </p>
+
+            <Link :href="route('dynamic-page-user-profile')">Ir a Perfil de usuario</Link>
         </header>
 
         <form @submit.prevent class="mt-6 space-y-6">
@@ -103,7 +104,7 @@ const urlGenerada = computed(() => '/dynamic-page?' + qs.stringify({
                 <InputLabel for="imagen" value="Imagen" />
 
                 <InputImage
-                    endpoint="/url-generator/imagen"
+                    endpoint="/api/url-generator/imagen"
                     @progress="(value) => progresoImagen = value"
                     @path="(value) => imagenUrl = value"
                 />
