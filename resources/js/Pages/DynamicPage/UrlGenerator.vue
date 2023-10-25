@@ -29,7 +29,6 @@ const urlGenerada = computed(() => '/dynamic-page?' + qs.stringify({
         correo: correo.value,
         imagen: imagenUrl.value,
     }, {
-        //skipEmptyString: true,
         skipNulls: true
     }))
 </script>
@@ -115,8 +114,6 @@ const urlGenerada = computed(() => '/dynamic-page?' + qs.stringify({
             </div>
 
             <div class="flex flex-col items-center gap-4">
-                <pre v-show="activaCreadorUrl">{{ urlGenerada }}</pre>
-
                 <PrimaryButton v-show="activaCreadorUrl">
                     <a :href="urlGenerada" target="_blank">Abrir URL en nueva pestaña</a>
                 </PrimaryButton>

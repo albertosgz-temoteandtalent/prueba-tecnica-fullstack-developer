@@ -32,35 +32,28 @@ const usuarioId = ref<number|undefined>(undefined);
 const mailEnviado = ref<boolean|undefined>(undefined);
 
 onMounted(() => {
-    const url = new URL(window.location);
+    const url = new URL('' + window.location);
     const params = url.searchParams;
 
-    if (!!params.get('nombre')) {
-        nombre.value = params.get('nombre');
-    }
-    if (!!params.get('apellidos')) {
-        apellidos.value = params.get('apellidos');
-    }
-    if (!!params.get('telefono')) {
-        telefono.value = params.get('telefono');
-    }
-    if (!!params.get('correo')) {
-        correo.value = params.get('correo');
-    }
-    if (!!params.get('imagen')) {
-        imagen.value = params.get('imagen');
-    }
+    nombre.value = params.get('nombre') ||'';
+    apellidos.value = params.get('apellidos') ||'';
+    telefono.value = params.get('telefono') ||'';
+    correo.value = params.get('correo') ||'';
+    imagen.value = params.get('imagen') ||'';
 
-    axios.post<CrearUsuarioRespuesta>('/api/url-generator/usuario', {
-        nombre: nombre.value,
-        apellidos: apellidos.value,
-        telefono: telefono.value,
-        correo: correo.value,
-        imagen: imagen.value,
-    }).then((response) => {
-        usuarioCreado.value = response.data.meta.usuario_creado;
-        usuarioId.value = response.data.data.id;
-    });
+    if (nombre.value || apellidos.value || telefono.value || correo.value || imagen.value) {
+        // Crear usuario
+        axios.post<CrearUsuarioRespuesta>('/api/url-generator/usuario', {
+            nombre: nombre.value,
+            apellidos: apellidos.value,
+            telefono: telefono.value,
+            correo: correo.value,
+            imagen: imagen.value,
+        }).then((response) => {
+            usuarioCreado.value = response.data.meta.usuario_creado;
+            usuarioId.value = response.data.data.id;
+        });
+    }
 })
 
 function enviarMail() {
@@ -127,7 +120,7 @@ function enviarMail() {
                 <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z"/></svg>
                 <p>Usuario {{ usuarioCreado ? 'creado' : 'no creado' }}</p>
             </div>
-            
+
             <button
                 v-show="usuarioId"
                 @click="enviarMail"
