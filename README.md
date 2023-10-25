@@ -35,6 +35,4 @@ Se ha intentado desarrollar el manejo de errores por la parte servidor.
 Sin obviar que hay mucho margen de mejora todavía en la aplicación en términos de manejor de errores y buenas prácticas, como crear más servicios para aplicar el Single Responsability Principle,
 propongo algunas de ellas para el frontend en particular: 
 
-- Mejorar control de errores en campos de formulario del generador de URL, por ejemplo chequeando validez del patrón email.
-- En el Generador de URL no incluir aquellos campos vacios en la URL.
 - Manejo de errores al cargar la imagen, así como poder elegir una nueva.
