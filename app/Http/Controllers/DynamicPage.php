@@ -38,7 +38,7 @@ class DynamicPage extends Controller
             $imagen->mime = $mime;
             $imagen->save();
 
-            return Storage::url($path);;
+            return Storage::url($path);
         }
         throw new BadRequestException('Imagen no encontrada', 400);
     }
