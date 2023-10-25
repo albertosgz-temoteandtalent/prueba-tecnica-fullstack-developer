@@ -12,7 +12,7 @@ Se ha considerado que el desarrollo de un estilo no era estrictamente necesario.
 
 ## Como arrancar
 
-1. Descargar el proyecto localmente `git pull`
+1. Descargar el proyecto localmente `git@github.com:albertosgz-temoteandtalent/prueba-tecnica-fullstack-developer.git`
 2. Entrar en el proyecto `cd prueba-tecnica-fullstack-developer`
 2. Ejecutar `composer install`
 3. Arrancar contenedores Docker `docker-compose up`
