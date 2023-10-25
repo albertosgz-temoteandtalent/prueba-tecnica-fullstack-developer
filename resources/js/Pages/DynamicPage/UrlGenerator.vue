@@ -8,11 +8,11 @@ import {computed, ref} from "vue";
 import * as qs from 'qs';
 import InputImage from "@/Components/InputImage.vue";
 
-const nombre = ref('');
-const apellidos = ref('');
-const telefono = ref('');
-const correo = ref('');
-const imagenUrl = ref('');
+const nombre = ref<string | null>(null);
+const apellidos = ref<string | null>(null);
+const telefono = ref<string | null>(null);
+const correo = ref<string | null>(null);
+const imagenUrl = ref<string | null>(null);
 
 const progresoImagen = ref(0);
 
