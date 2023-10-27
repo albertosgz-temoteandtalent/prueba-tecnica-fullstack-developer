@@ -52,3 +52,4 @@ propongo algunas de ellas para el frontend en particular:
 
 - Manejo de errores al cargar la imagen, así como poder elegir una nueva.
 - Eliminar código inicial de Laravel Breeze que no es necesario para la prueba.
+- Separar completamente front y back, eliminando dependencia de Inertia.js e implementando Vue Router.
